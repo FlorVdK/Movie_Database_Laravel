@@ -24,6 +24,12 @@ class DirectorsTableSeeder extends Seeder
         DB::table('directors')->insert([
             'name' => 'Joachim Rønning'
         ]);
+        DB::table('directors')->insert([
+            'name' => 'Chris Columbus'
+        ]);
+        DB::table('directors')->insert([
+            'name' => 'Brian De Palma'
+        ]);
         
     }
 }

@@ -13,7 +13,7 @@ class MovieController extends Controller
     public function overview()
     {
     	$movies = Movie::orderBy('title', 'asc')
-    		->get();
+    		->paginate(18);
 		return view('movie.overview', ['movies' => $movies]);
     }
 
@@ -26,7 +26,7 @@ class MovieController extends Controller
 
     	$movies = Movie::orderBy('title', 'asc')
     		->where('title', 'like', '%' . $request->input('search').'%')
-    		->get();
+    		->paginate(18);
 		return view('movie.overview', ['movies' => $movies, 'search'=>$search]);
     }
 
@@ -68,22 +68,22 @@ class MovieController extends Controller
         switch ($sort) {
             case '1':
             $movies = Movie::orderBy('title', 'asc')
-            ->get();
+            ->paginate(18);
                 break;
 
             case '2':
             $movies = Movie::orderBy('release_date', 'desc')
-            ->get();
+            ->paginate(18);
                 break;
 
             case '3':
             $movies = Movie::orderBy('release_date', 'asc')
-            ->get();
+            ->paginate(18);
                 break;
 
             case '4':
             $movies = Movie::orderBy('title', 'asc')
-            ->get();
+            ->paginate(18);
                 break;
             
             default:

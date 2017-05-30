@@ -33,5 +33,8 @@ class GenresTableSeeder extends Seeder
         DB::table('genres')->insert([
             'genre' => 'Sci-Fi'
         ]);
+        DB::table('genres')->insert([
+            'genre' => 'Fantasy'
+        ]);
     }
 }

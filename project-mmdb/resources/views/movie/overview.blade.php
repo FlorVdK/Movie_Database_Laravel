@@ -19,7 +19,7 @@
                 @endforelse
 
             @endif
-
+    {{ $movies->links() }}
 
     @endsection
     

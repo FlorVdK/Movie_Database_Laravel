@@ -52,5 +52,29 @@ class ActorsTableSeeder extends Seeder
             'name' => 'Javier Bardem',
             'imageurl' => 'images/Javier_Bardem.jpg'
         ]);
+        DB::table('actors')->insert([
+            'name' => 'Daniel Radcliffe',
+            'imageurl' => 'images/Daniel_Radcliffe.jpg'
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Rupert Grint',
+            'imageurl' => 'images/Rupert_Grint.jpg'
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Emma Watson',
+            'imageurl' => 'images/Emma_Watson.jpg'
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Tom Cruise',
+            'imageurl' => 'images/Tom_Cruise.jpg'
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Jon Voight',
+            'imageurl' => 'images/Jon_Voight.jpg'
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Emmanuelle Béart',
+            'imageurl' => 'images/Emmanuelle_Béart.jpg'
+        ]);
     }
 }

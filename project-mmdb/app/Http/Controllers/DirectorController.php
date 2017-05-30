@@ -13,7 +13,7 @@ class DirectorController extends Controller
     public function detail($id)
     {
     	$director = Director::findOrFail($id);
-    	$movies = $director->movies;
+    	$movies = $director->movies()->paginate(18);
     	return view('director.detail', ['movies' => $movies, 'director'=>$director]);
     }
 
@@ -28,25 +28,25 @@ class DirectorController extends Controller
             case '1':
             $movies = Movie::orderBy('title', 'asc')
             ->where('director_id', $directorid)
-            ->get();
+            ->paginate(18);
                 break;
 
             case '2':
             $movies = Movie::orderBy('release_date', 'desc')
             ->where('director_id', $directorid)
-            ->get();
+            ->paginate(18);
                 break;
 
             case '3':
             $movies = Movie::orderBy('release_date', 'asc')
             ->where('director_id', $directorid)
-            ->get();
+            ->paginate(18);
                 break;
 
             case '4':
             $movies = Movie::orderBy('title', 'asc')
             ->where('director_id', $directorid)
-            ->get();
+            ->paginate(18);
                 break;
             
             default:

@@ -13,14 +13,14 @@ class ActorController extends Controller
     public function overview()
     {
     	$actors = Actor::orderBy('name', 'asc')
-    		->get();
+    		->paginate(18);
 		return view('actor.overview', ['actors' => $actors]);
     }
 
     public function detail($id)
     {
     	$actor = Actor::findOrFail($id);
-    	$movies = $actor->movies;
+    	$movies = $actor->movies()->paginate(18);
     	return view('actor.detail', ['movies' => $movies, 'actor'=>$actor]);
     }
 
@@ -35,25 +35,25 @@ class ActorController extends Controller
             case '1':
             $movies = Movie::orderBy('title', 'asc')
             ->where('actor_id', $actorid)
-            ->get();
+            ->paginate(18);
                 break;
 
             case '2':
             $movies = Movie::orderBy('release_date', 'desc')
             ->where('actor_id', $actorid)
-            ->get();
+            ->paginate(18);
                 break;
 
             case '3':
             $movies = Movie::orderBy('release_date', 'asc')
             ->where('actor_id', $actorid)
-            ->get();
+            ->paginate(18);
                 break;
 
             case '4':
             $movies = Movie::orderBy('title', 'asc')
             ->where('actor_id', $actorid)
-            ->get();
+            ->paginate(18);
                 break;
             
             default:
