@@ -17,5 +17,15 @@ class UsersTableSeeder extends Seeder
             'email' => 'flor.vandekerckhove@odisee.be',
             'password' => bcrypt('Azerty123')
         ]);
+        DB::table('users')->insert([
+            'name' => 'Rolf Van de Kerckhove',
+            'email' => 'Rolf.vandekerckhove@odisee.be',
+            'password' => bcrypt('Azerty123')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Florence Van de Kerckhove',
+            'email' => 'Florence.vandekerckhove@odisee.be',
+            'password' => bcrypt('Azerty123')
+        ]);
     }
 }

@@ -31,6 +31,7 @@
             <div class="nav">
                 <a href="{{ url('/') }}/" class="selected" title="Watch Movies">Movies</a>
                 <a href="{{ url('/') }}/actors" class="" title="Watch Actors">Actors</a>
+                <a href="{{ url('/') }}/admin" class="" title="Login/Register">Login/Register</a>
             </div>
             <div class="search">
                 {!! Form::open(array('url' => 'movie/search', 'method' => 'GET')) !!}
@@ -46,18 +47,7 @@
 
     <!-- content -->
     <div class="body">
-
-        <h1>
-            <span><strong>Top  MMDB @yield('title')</strong></span>
-        </h1>
-        @if ( @yield('title') === 'Movies')
-        <div class="sort_bar">
-            <a href="/?genres">Generes</a> |
-            {!! Form::open(array('url' => 'movie/sort', 'method' => 'GET')) !!}
-            {!! Form::select('sort', array('1' => 'Sort By', '2' => 'Date', '3' => 'Popular', '4' => 'Release', '5' => 'Alphabet'), '', array('onchange' => 'this.form.submit()')) !!}
-            {!! Form::close() !!}
-        </div>
-        @endif
+        
 
         @yield('content')
 

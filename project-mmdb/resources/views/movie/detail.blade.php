@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('title', $movie->title)
 @section('content')
+
+        <p class="breadcrumb"><a href="{{ url('/') }}/">Movies</a> &raquo; @yield('title') </p>
     @if ($movie)
         <div class="body item_body">
             <div>
@@ -11,8 +13,10 @@
                     MMDB:
                     <strong>
                         <span style="color:green;">
-                            @if ($votes)
+                            @if ( $votes)
                                 {{ $score }} / 10
+                            @else   
+                                no scores 
                             @endif
                         </span>
                     </strong>
@@ -48,7 +52,7 @@
                                             <a href="{{ url('/actor')}}/{{ $actor->id }}"> {{ $actor->name }} </a>
                                             , 
                                             @empty
-                                                <p>No blogposts to show!</p>
+                                                <p>No actors to show!</p>
                                             @endforelse
 
                                         @endif
@@ -58,6 +62,28 @@
                         </tbody>
                     </table>
                 </div>                
+            </div>
+            <div class="page_content">
+                <div class="links_left_container">
+                    <div class="comment_box">
+                        <h1>
+                            <span><a href="#" title="{{ $movie->title }} ({{ $movie->release_date }}) Comments">{{ $movie->title }}  Comments</a>
+                            </span>
+                        </h1>
+                        {{ Form::textarea('comment', null, ['size' => '45x5']) }}
+                        {!! Form::submit('comment', array('class' => 'search_button')) !!}
+                        {!! Form::close() !!}
+                        @if ($comments)
+                            <p> {{ $nrcomments }} comments</p>
+                            @forelse ($comments as $comment)
+                                <p>{{ $comment->description }}</p>
+                                <p> {{ $comment->name }} </p>
+                            @empty
+                                <p>No comments to show!</p>
+                            @endforelse
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     @endif

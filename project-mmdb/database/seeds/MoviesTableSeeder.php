@@ -36,5 +36,29 @@ class MoviesTableSeeder extends Seeder
             'genre_id' => '1',
             'director_id' => '1'
         ]);
+        DB::table('movies')->insert([
+            'title' => 'Pirates of the Caribbean: At World&#39;s End',
+            'imageurl' => 'images/Pirates_of_the_Caribbean_At_Worlds_End.jpg',
+            'description' => 'Captain Barbossa, Will Turner and Elizabeth Swann must sail off the edge of the map, navigate treachery and betrayal, find Jack Sparrow, and make their final alliances for one last decisive battle.',
+            'release_date' => '2007',
+            'genre_id' => '1',
+            'director_id' => '1'
+        ]);
+        DB::table('movies')->insert([
+            'title' => 'Pirates of the Caribbean: On Stranger Tides',
+            'imageurl' => 'images/Pirates_of_the_Caribbean_On_Stranger_Tides.jpg',
+            'description' => 'Jack Sparrow and Barbossa embark on a quest to find the elusive fountain of youth, only to discover that Blackbeard and his daughter are after it too.',
+            'release_date' => '2011',
+            'genre_id' => '1',
+            'director_id' => '3'
+        ]);
+        DB::table('movies')->insert([
+            'title' => 'Pirates of the Caribbean: Salazar&#39s Revenge ',
+            'imageurl' => 'images/Pirates_of_the_Caribbean_Salazars_Revenge.jpg',
+            'description' => 'Captain Jack Sparrow searches for the trident of Poseidon.',
+            'release_date' => '2017',
+            'genre_id' => '1',
+            'director_id' => '4'
+        ]);
     }
 }

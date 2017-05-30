@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Movies')
 @section('content')
+<p class="breadcrumb"><a href="{{ url('/') }}/">Movies</a> &raquo; {{ $search }}</p>
     @if ($movies)
                 @forelse ($movies as $movie)
                     <div class="item">

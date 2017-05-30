@@ -29,7 +29,10 @@ Route::get('/movie/{id}', 'MovieController@detail')->where('id', '[0-9]+');
 
 Route::get('/actors', 'ActorController@overview');
 
+Route::get('/actor/sort', 'ActorController@sort');
+
 Route::get('/actor/{id}', 'ActorController@detail')->where('id', '[0-9]+');
 
 Route::get('/director/{id}', 'DirectorController@detail')->where('id', '[0-9]+');
 
+Route::get('/director/sort', 'DirectorController@sort');

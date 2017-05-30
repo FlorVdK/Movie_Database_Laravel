@@ -31,4 +31,9 @@ class Movie extends Model
     {
         return $this->belongsToMany('App\Actor', 'Actorsinmovies');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'Comments');
+    }
 }

@@ -27,5 +27,20 @@ class VotesTableSeeder extends Seeder
             'movie_id' => '3',
             'vote'=> '7'
         ]);
+        DB::table('votes')->insert([
+            'user_id' => '2',
+            'movie_id' => '1',
+            'vote'=> '5'
+        ]);
+        DB::table('votes')->insert([
+            'user_id' => '2',
+            'movie_id' => '2',
+            'vote'=> '10'
+        ]);
+        DB::table('votes')->insert([
+            'user_id' => '2',
+            'movie_id' => '3',
+            'vote'=> '4'
+        ]);
     }
 }

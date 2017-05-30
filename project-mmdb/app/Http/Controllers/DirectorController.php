@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Director;
+use App\Movie;
 
 use Illuminate\Http\Request;
 
@@ -13,6 +14,46 @@ class DirectorController extends Controller
     {
     	$director = Director::findOrFail($id);
     	$movies = $director->movies;
-    	return view('director.detail', ['movies' => $movies]);
+    	return view('director.detail', ['movies' => $movies, 'director'=>$director]);
+    }
+
+    public function sort(Request $request)
+    {
+        $search = $request->input('sort');
+        $directorid = $request->input('invisible');
+        $directorid = (int)$directorid;
+        $sort = (int) $search;
+        $director = Director::findOrFail($directorid);
+        switch ($sort) {
+            case '1':
+            $movies = Movie::orderBy('title', 'asc')
+            ->where('director_id', $directorid)
+            ->get();
+                break;
+
+            case '2':
+            $movies = Movie::orderBy('release_date', 'desc')
+            ->where('director_id', $directorid)
+            ->get();
+                break;
+
+            case '3':
+            $movies = Movie::orderBy('release_date', 'asc')
+            ->where('director_id', $directorid)
+            ->get();
+                break;
+
+            case '4':
+            $movies = Movie::orderBy('title', 'asc')
+            ->where('director_id', $directorid)
+            ->get();
+                break;
+            
+            default:
+                abort(404);
+                break;
+        }
+
+        return view('director.detail', ['movies' => $movies, 'director'=>$director]);
     }
 }
