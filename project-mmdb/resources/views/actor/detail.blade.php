@@ -6,7 +6,9 @@
             <a href="/?genres">Generes</a> |
             {!! Form::open(array('url' => 'actor/sort', 'method' => 'GET')) !!}
             {!! Form::select('sort', array('1' => 'Sort By', '2' => 'Release &darr;', '3' => 'Release &uarr;', '4' => 'Alphabet'), '', array('onchange' => 'this.form.submit()')) !!}
-            {{ Form::hidden('invisible', $actor->id , array('id' => $actor->id  )) }}
+            @if ( $actor)
+            {{ Form::hidden('actorid', $actor->id) }}
+            @endif
             {!! Form::close() !!}
         </div>
     @if ($movies)

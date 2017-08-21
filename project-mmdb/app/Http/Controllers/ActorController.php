@@ -26,34 +26,27 @@ class ActorController extends Controller
 
     public function sort(Request $request)
     {
-        $search = $request->input('sort');
-        $actorid = $request->input('invisible');
+        $input = $request->input('sort');
+        $actorid = $request->input('actorid');
         $actorid = (int)$actorid;
-        $sort = (int) $search;
+        $sort = (int) $input;
         $actor = Actor::findOrFail($actorid);
         switch ($sort) {
             case '1':
-            $movies = Movie::orderBy('title', 'asc')
-            ->where('actor_id', $actorid)
-            ->paginate(18);
+            $movies= $actor->movies()->orderBy('title', 'asc')->paginate(18);
+            //$sort->sortByDesc('title');
                 break;
 
             case '2':
-            $movies = Movie::orderBy('release_date', 'desc')
-            ->where('actor_id', $actorid)
-            ->paginate(18);
+            $movies= $actor->movies()->orderBy('release_date', 'desc')->paginate(18);
                 break;
 
             case '3':
-            $movies = Movie::orderBy('release_date', 'asc')
-            ->where('actor_id', $actorid)
-            ->paginate(18);
+            $movies= $actor->movies()->orderBy('release_date', 'asc')->paginate(18);
                 break;
 
             case '4':
-            $movies = Movie::orderBy('title', 'asc')
-            ->where('actor_id', $actorid)
-            ->paginate(18);
+            $movies= $actor->movies()->orderBy('title', 'asc')->paginate(18);
                 break;
             
             default:
