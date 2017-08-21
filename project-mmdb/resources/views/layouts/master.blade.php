@@ -31,7 +31,11 @@
             <div class="nav">
                 <a href="{{ url('/') }}/" class="selected" title="Watch Movies">Movies</a>
                 <a href="{{ url('/') }}/actors" class="" title="Watch Actors">Actors</a>
-                <a href="{{ url('/') }}/admin" class="" title="Login/Register">Login/Register</a>
+                @if(Auth::guest())
+                <a href="{{ url('/') }}/login" class="" title="Login/Register">Login/Register</a>
+                @else
+                <a href="{{ url('/') }}/logout" class="" title="logout">logout</a>
+                @endif
             </div>
             <div class="search">
                 {!! Form::open(array('url' => 'movie/search', 'method' => 'GET')) !!}

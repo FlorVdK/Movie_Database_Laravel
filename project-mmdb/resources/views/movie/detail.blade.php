@@ -13,7 +13,7 @@
                     MMDB:
                     <strong>
                         <span style="color:green;">
-                            @if ( $votes)
+                            @if ( $movie->votes)
                                 {{ $score }} / 10
                             @else   
                                 no scores 
@@ -36,19 +36,19 @@
                         <tbody>
                             <tr>
                                 <th width="100" valign="top">Genres</th>
-                                <td valign="top"><a href="#">{{ $genre->genre }}</a></td>
+                                <td valign="top"><a href="#">{{ $movie->genres->genre }}</a></td>
                             </tr>
                             <tr></tr>
                             <tr>
                                 <th width="100" valign="top">Director</th>
-                                <td valign="top"><a href="{{ url('/director')}}/{{ $director->id }}">{{ $director->name }}</a></td>
+                                <td valign="top"><a href="{{ url('/director')}}/{{ $movie->directors->id }}">{{ $movie->directors->name }}</a></td>
                             </tr>
                             <tr>
                                 <th width="100" valign="top">Starring</th>
                                 <td valign="top">
                                     <span class="movie_actors">
-                                        @if ($actors)
-                                            @forelse ($actors as $actor)
+                                        @if ($movie->actors)
+                                            @forelse ($movie->actors as $actor)
                                             <a href="{{ url('/actor')}}/{{ $actor->id }}"> {{ $actor->name }} </a>
                                             , 
                                             @empty
@@ -70,14 +70,16 @@
                             <span><a href="#" title="{{ $movie->title }} ({{ $movie->release_date }}) Comments">{{ $movie->title }}  Comments</a>
                             </span>
                         </h1>
+                        {!! Form::open(array('url' => 'movie/comment', 'method' => 'POST')) !!}
                         {{ Form::textarea('comment', null, ['size' => '45x5']) }}
-                        {!! Form::submit('comment', array('class' => 'search_button')) !!}
+                        {{ Form::hidden('id', $movie->id) }}
+                        {!! Form::submit('comment', array('class' => 'comment_button')) !!}
                         {!! Form::close() !!}
-                        @if ($comments)
-                            <p> {{ $nrcomments }} comments</p>
-                            @forelse ($comments as $comment)
-                                <p>{{ $comment->description }}</p>
-                                <p> {{ $comment->name }} </p>
+                        @if ($movie->comments)
+                            <p> {{ $movie->comments->count() }} comments</p>
+                            @forelse ($movie->comments as $comment)
+                                <p>{{ $comment->description}}</p>                                
+                                <p> {{ $comment->name }}</p>
                             @empty
                                 <p>No comments to show!</p>
                             @endforelse

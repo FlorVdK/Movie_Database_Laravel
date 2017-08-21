@@ -25,6 +25,8 @@ Route::get('/movie/search', 'MovieController@search');
 
 Route::get('/movie/sort', 'MovieController@sort');
 
+Route::post('/movie/comment', 'MovieController@comment');
+
 Route::get('/movie/{id}', 'MovieController@detail')->where('id', '[0-9]+');
 
 Route::get('/actors', 'ActorController@overview');
@@ -36,3 +38,16 @@ Route::get('/actor/{id}', 'ActorController@detail')->where('id', '[0-9]+');
 Route::get('/director/{id}', 'DirectorController@detail')->where('id', '[0-9]+');
 
 Route::get('/director/sort', 'DirectorController@sort');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+/*
+ * Logout user
+ */
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect(URL::to('/'));
+});
+
