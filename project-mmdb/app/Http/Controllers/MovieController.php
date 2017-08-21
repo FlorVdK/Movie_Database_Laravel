@@ -14,9 +14,10 @@ class MovieController extends Controller
     //
     public function overview()
     {
+        $search = null;
     	$movies = Movie::orderBy('title', 'asc')
     		->paginate(18);
-		return view('movie.overview', ['movies' => $movies]);
+		return view('movie.overview', ['movies' => $movies, 'search'=>$search]);
     }
 
     public function search(Request $request)
@@ -64,26 +65,31 @@ class MovieController extends Controller
 
     public function sort(Request $request)
     {
-        $search = $request->input('sort');
-        $sort = (int) $search;
+        $input = $request->input('sort');
+        $search = $request->input('search');
+        $sort = (int) $input;
         switch ($sort) {
             case '1':
-            $movies = Movie::orderBy('title', 'asc')
+            $movies = Movie::orderBy('title', 'asc')  
+            ->where('title', 'like', '%' . $request->input('search').'%')          
             ->paginate(18);
                 break;
 
             case '2':
             $movies = Movie::orderBy('release_date', 'desc')
+            ->where('title', 'like', '%' . $request->input('search').'%')
             ->paginate(18);
                 break;
 
             case '3':
             $movies = Movie::orderBy('release_date', 'asc')
+            ->where('title', 'like', '%' . $request->input('search').'%')
             ->paginate(18);
                 break;
 
             case '4':
             $movies = Movie::orderBy('title', 'asc')
+            ->where('title', 'like', '%' . $request->input('search').'%')
             ->paginate(18);
                 break;
             
@@ -92,7 +98,8 @@ class MovieController extends Controller
                 break;
         }
 
-        return view('movie.overview', ['movies' => $movies]);
+
+        return view('movie.overview', ['movies' => $movies, 'search'=>$search]);
     }
 
     public function comment(Request $request)

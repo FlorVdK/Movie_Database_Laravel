@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ActorController extends Controller
 {
-    //
+    //Overview of actors order by alphabet
     public function overview()
     {
     	$actors = Actor::orderBy('name', 'asc')

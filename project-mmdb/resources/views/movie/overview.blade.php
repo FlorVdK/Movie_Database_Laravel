@@ -3,9 +3,11 @@
 @section('content')
 <p class="breadcrumb"><a href="{{ url('/') }}/">Movies</a> </p>
         <div class="sort_bar">
-            <a href="/?genres">Generes</a> |
             {!! Form::open(array('url' => 'movie/sort', 'method' => 'GET')) !!}
             {!! Form::select('sort', array('1' => 'Sort By', '2' => 'Release &darr;', '3' => 'Release &uarr;', '4' => 'Alphabet'), '', array('onchange' => 'this.form.submit()')) !!}
+            @if ( $search)
+            {{ Form::hidden('search', $search) }}
+            @endif
             {!! Form::close() !!}
         </div>
 
